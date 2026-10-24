@@ -1,0 +1,13 @@
+{
+  "name": "alfred-easydict",
+  "version": "0.1.5",
+  "private": true,
+  "type": "module",
+  "description": "Independent Alfred dictionary and translator adapted from Raycast Easydict",
+  "engines": { "node": ">=18" },
+  "scripts": {
+    "test": "node --test && python3 -m unittest discover -s test -p '*_test.py'",
+    "build": "python3 scripts/build.py"
+  },
+  "license": "MIT"
+}
