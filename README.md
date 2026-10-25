@@ -11,7 +11,7 @@
 
 - **中英查词**：有道词典提供多词性释义、英美音标、词形变化和网络释义。
 - **前缀联想**：只记得单词开头也能查，候选词附带中文释义，按 Tab 补全后继续查询。
-- **多语言翻译**：默认启用 Google；自动识别源语言，中文译英文，其他语言译简体中文，也可指定目标语言。
+- **多语言翻译**：默认启用 Google；自动识别源语言，可配置首选目标语言和第二语言；初始为中英互译，也可单次指定目标语言。
 - **键盘操作**：回车复制、⌘Enter 朗读、⌘L 大字查看全文。
 - **编程标识符**：自动拆分 `camelCase`、`HTTPServer` 和 `snake_case` 后查询。
 - **渐进结果与缓存**：多个来源并行查询，先返回的先显示，一个来源失败不影响其他结果。
@@ -28,7 +28,7 @@
    python3 scripts/build.py
    ```
 
-2. 双击生成的 `dist/Alfred-Easydict-0.1.5.alfredworkflow`，在 Alfred 中导入或更新。
+2. 双击生成的 `dist/Alfred-Easydict-0.1.6.alfredworkflow`，在 Alfred 中导入或更新。
 3. 呼出 Alfred，输入 `ed hello`。默认关键词为 `ed`。
 4. 如果找不到 Node.js，在 **Workflows → Easydict for Alfred → Configure Workflow** 中设置 `node_path`。
 
@@ -50,7 +50,12 @@ ed The request was cancelled because a newer query was started.
 
 ### 多语言翻译
 
-**自动翻译**：日语、韩语、法语等外语可直接输入，默认译成简体中文；中文默认译成英文。
+**自动翻译**：源语言自动识别，通常译成“首选目标语言”；原文已经是首选语言时，改译成“第二语言”。
+初始设置为首选 `zh`（简体中文）、第二语言 `en`（英文），保留中文译英文、其他语言译简体中文的行为。
+
+在 **Configure Workflow** 中设置 `target_language` 和 `secondary_language`，填写下表中的语言代码，两者须不同。
+例如设为 `en` 和 `ja` 后，`ed 你好` 译成英文，`ed hello` 译成日文，`ed :fr hello` 仍译成法文。
+单次 `:语言` 前缀优先于这两个设置。更改任一语言设置后会使用独立缓存，无需手动清理旧结果。
 
 **指定目标**：使用 `ed :语言代码 内容`。冒号使用英文 `:`，语言代码与内容之间留一个空格。
 
@@ -129,8 +134,12 @@ ed :zh Bonjour
 | --- | --- | --- |
 | `keyword` | `ed` | 查询关键词；可改为 `yd`，避免与已有 Workflow 重名 |
 | `providers` | `Youdao,Google` | 逗号分隔，支持 `Youdao`、`Google`、`Bing` |
+| `target_language` | `zh` | 首选目标语言，使用语言代码（如 `en`、`ja`） |
+| `secondary_language` | `en` | 原文为首选目标语言时的翻译目标；须与首选语言不同 |
 | `node_path` | 自动检测 | Node.js 可执行文件的绝对路径 |
 | `cache_hours` | `24` | 0–168 小时；0 禁用长期缓存，但保留当前查询的短暂状态 |
+
+语言设置仅作用于 Google / Bing 翻译。有道词典与前缀联想仍使用中英释义；不需要时可在 `providers` 中移除 `Youdao`。
 
 有道提供词典和前缀联想，Google 提供翻译。Bing 为可选来源，在本次开发网络中请求失败，默认关闭。
 这些来源使用网站查询接口，可用性可能随网络、限流及上游协议变化而改变。

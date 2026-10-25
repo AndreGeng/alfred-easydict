@@ -11,7 +11,7 @@ No running Easydict or Raycast app and no translation API key required.
 
 - **English–Chinese dictionary**: Youdao definitions by part of speech, US/UK phonetics, word forms, and web definitions.
 - **Prefix suggestions**: find a word from its first few letters, with Chinese glosses. Press Tab to complete it and look up the full entry.
-- **Multilingual translation**: Google is enabled by default. The source language is detected automatically; Chinese translates into English and other languages into Simplified Chinese. You can also specify the target.
+- **Multilingual translation**: Google is enabled by default. The source language is detected automatically. Configure a preferred target and secondary language, or specify the target per query. Defaults retain Chinese–English translation.
 - **Keyboard actions**: Enter to copy, ⌘Enter to speak, and ⌘L to view the full result in Large Type.
 - **Code identifiers**: split `camelCase`, `HTTPServer`, and `snake_case` before lookup.
 - **Progressive results and caching**: providers run in parallel. Fast results appear first, and failures do not hide successful results.
@@ -28,7 +28,7 @@ Requires **macOS, Alfred 5 with Powerpack, and Node.js 18+**. There are no npm r
    python3 scripts/build.py
    ```
 
-2. Double-click `dist/Alfred-Easydict-0.1.5.alfredworkflow` to import or update it in Alfred.
+2. Double-click `dist/Alfred-Easydict-0.1.6.alfredworkflow` to import or update it in Alfred.
 3. Open Alfred and enter `ed hello`. The default keyword is `ed`.
 4. If Node.js cannot be found, set `node_path` under **Workflows → Easydict for Alfred → Configure Workflow**.
 
@@ -50,7 +50,12 @@ ed The request was cancelled because a newer query was started.
 
 ### Multilingual translation
 
-**Automatic translation**: enter Japanese, Korean, French, or other foreign text directly to translate into Simplified Chinese. Chinese defaults to English.
+**Automatic translation**: the source language is detected automatically. Text translates into your **preferred target language**, or into your **secondary language** when the source already matches the preferred target.
+The initial settings are `zh` (Simplified Chinese) and `en` (English), preserving Chinese-to-English and other-languages-to-Chinese behavior.
+
+Set `target_language` and `secondary_language` in **Configure Workflow**, using two different language codes from the table below.
+For example, with `en` and `ja`, `ed 你好` translates into English, `ed hello` into Japanese, and `ed :fr hello` still into French.
+An explicit `:language` prefix overrides both settings. Each language pair uses a separate cache, so changing either setting does not reuse old translations.
 
 **Explicit target**: use `ed :language-code text`. Use an ASCII colon (`:`) and a space between the language code and the text.
 
@@ -128,8 +133,12 @@ Open **Alfred Preferences → Workflows → Easydict for Alfred → Configure Wo
 | --- | --- | --- |
 | `keyword` | `ed` | Lookup keyword; you can use `yd` if it does not conflict with another Workflow |
 | `providers` | `Youdao,Google` | Comma-separated list: `Youdao`, `Google`, `Bing` |
+| `target_language` | `zh` | Preferred target language code, such as `en` or `ja` |
+| `secondary_language` | `en` | Target when the source matches the preferred language; must be different |
 | `node_path` | Auto-detected | Absolute path to the Node.js executable |
 | `cache_hours` | `24` | 0–168 hours; 0 disables long-term caching but retains brief state for the active query |
+
+Language preferences apply to Google/Bing translation. Youdao dictionary entries and prefix suggestions remain English–Chinese; remove `Youdao` from `providers` if you do not need them.
 
 Youdao supplies dictionary entries and prefix suggestions; Google supplies translation. Bing is optional and disabled by default because its requests failed on the development network.
 These providers use website endpoints. Availability can change with network conditions, rate limits, and upstream protocol changes.

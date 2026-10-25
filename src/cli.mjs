@@ -1,4 +1,4 @@
-import { parseQuery } from './languages.mjs';
+import { parseQuery, languagePreferences } from './languages.mjs';
 import { spawn, execFile } from 'node:child_process';
 import { mkdir, writeFile, readFile, unlink, readdir, stat } from 'node:fs/promises';
 import { homedir } from 'node:os';
@@ -62,8 +62,11 @@ async function main() {
     return;
   }
   let parsed;
-  try { parsed = parseQuery(query); } catch (error) {
-    console.log(JSON.stringify({ items: [{ title: error.message, subtitle: '例如 :ja 你好', valid: false }] }));
+  try {
+    languagePreferences();
+    parsed = parseQuery(query);
+  } catch (error) {
+    console.log(JSON.stringify({ items: [{ title: error.message, subtitle: 'Configure Workflow · :ja 你好', valid: false }] }));
     return;
   }
   if (!parsed.text) {

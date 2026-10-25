@@ -1,6 +1,27 @@
-# Verification — 2026-10-24
+# Verification — 2026-10-25
 
-Implemented and packaged version: 0.1.5.
+Implemented and packaged version: 0.1.6.
+
+Version 0.1.6 acceptance:
+
+- 22 Node tests and 4 Python tests passed. Added regression coverage for preferred
+  target/secondary language routing, explicit overrides, detected regional language
+  codes, invalid or identical settings, configuration exposure, and CLI cache
+  isolation for changes to either setting.
+- The new language-preference test failed before implementation, then passed.
+- Live Google CLI checks: en/ja + 你好 → Hello; en/ja + hello → こんにちは;
+  en/ja + :fr hello → Bonjour; ja/en + 東京 → Tokyo;
+  unchanged zh/en defaults + hello → 你好.
+- Live normal --query path: initial pending JSON, detached worker, then repeated
+  CLI calls returned こんにちは for hello with en/ja preferences. The worker state
+  completed with no pending sources and exactly one cache file.
+- Both language settings are included in cache schema 4. Worker subprocesses
+  inherit the same settings as the query process. Youdao dictionary/suggestion
+  scope is unchanged and can be disabled independently.
+- New package contains the language settings and updated bilingual documentation.
+  Updated the local Alfred installation through its import UI, preserving workflow
+  customisations. Preferences confirmed v0.1.6 and both language fields with zh/en
+  defaults. Bing live requests remain unverified. UI hints remain primarily Chinese.
 
 Version 0.1.5 acceptance:
 

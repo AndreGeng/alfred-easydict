@@ -1,11 +1,11 @@
-import { parseQuery } from './languages.mjs';
+import { parseQuery, languagePreferences } from './languages.mjs';
 import { createHash, randomUUID } from 'node:crypto';
 import { readFile, writeFile, rename, unlink } from 'node:fs/promises';
 
 export const failureMessage = '查询失败，请检查网络或稍后重试';
 
-export function cacheKey(query, names) {
-  return createHash('sha256').update(JSON.stringify([3, query, names])).digest('hex');
+export function cacheKey(query, names, preferences = languagePreferences()) {
+  return createHash('sha256').update(JSON.stringify([4, query, names, preferences.primary, preferences.secondary])).digest('hex');
 }
 
 export async function readState(path, ttl) {

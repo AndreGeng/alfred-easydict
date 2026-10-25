@@ -44,3 +44,22 @@ test('CLI guides incomplete/unsupported targets and translation-disabled configu
   assert.match(cli(':xx hello').items[0].title, /不支持/);
   assert.match(cli(':fr hello', 'Youdao').items[0].title, /启用 Google 或 Bing/);
 });
+
+test('preferred and secondary targets follow detected source, with explicit overrides', async () => {
+  const { languagePreferences, resolvedTarget } = await import('../src/languages.mjs');
+  const preferences = languagePreferences({ target_language: 'en', secondary_language: 'ja' });
+  assert.deepEqual(preferences, { primary: 'en', secondary: 'ja' });
+  assert.equal(direction('你好', preferences).to, 'en');
+  assert.equal(resolvedTarget('hello', 'en-US', preferences), 'ja');
+  assert.equal(resolvedTarget('bonjour', 'fr', preferences), 'en');
+  assert.equal(resolvedTarget('你好', 'zh-CN', preferences), 'en');
+  assert.equal(resolvedTarget(':fr hello', 'en', preferences), 'fr');
+  const japanese = { primary: 'ja', secondary: 'en' };
+  assert.equal(resolvedTarget('東京', 'ja', japanese), 'en');
+  assert.equal(resolvedTarget('hello', 'en', japanese), 'ja');
+  assert.deepEqual(languagePreferences({}), { primary: 'zh', secondary: 'en' });
+  assert.deepEqual(languagePreferences({ target_language: ' EN ', secondary_language: 'JA' }), preferences);
+  assert.throws(() => languagePreferences({ target_language: 'xx' }), /target_language/);
+  assert.throws(() => languagePreferences({ secondary_language: 'xx' }), /secondary_language/);
+  assert.throws(() => languagePreferences({ target_language: 'en', secondary_language: 'en' }), /不同|different/);
+});

@@ -31,6 +31,11 @@ class BuildTests(unittest.TestCase):
             with self.subTest(type=obj["type"]):
                 self.assertEqual(obj["version"], supported[obj["type"]])
 
+    def test_language_settings_are_exposed_with_compatible_defaults(self):
+        settings = {s["variable"]: s for s in build.manifest()["userconfigurationconfig"]}
+        self.assertEqual(settings["target_language"]["config"]["default"], "zh")
+        self.assertEqual(settings["secondary_language"]["config"]["default"], "en")
+
     def test_search_passes_query_as_argv(self):
         objects = build.manifest()["objects"]
         search = next(o for o in objects if o["type"] == "alfred.workflow.input.scriptfilter")

@@ -59,6 +59,8 @@ def manifest():
         "userconfigurationconfig": [
             setting("keyword", "查询关键词", "ed", "默认 ed，可自行改为 yd。"),
             setting("providers", "查询来源", "Youdao,Google", "逗号分隔：Youdao、Google、Bing。Bing 可选。"),
+            setting("target_language", "首选目标语言 / Preferred target", "zh", "zh, en, ja, ko, fr, de, es, it, pt, ru, ar。默认 zh；:语言 前缀优先 / Explicit prefixes override this."),
+            setting("secondary_language", "第二语言 / Secondary language", "en", "原文为首选语言时使用；须与首选语言不同 / Used when the source matches the preferred target; choose a different language."),
             setting("node_path", "Node.js 路径", "", "可留空自动检测；找不到时填写 Node.js 18+ 可执行文件绝对路径。"),
             setting("cache_hours", "缓存小时数", "24", "0–168。0 只保留当前查询状态约 1 秒；网络查询状态最多保留 20 秒。")
         ]

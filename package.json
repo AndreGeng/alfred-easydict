@@ -1,6 +1,6 @@
 {
   "name": "alfred-easydict",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "private": true,
   "type": "module",
   "description": "Independent Alfred dictionary and translator adapted from Raycast Easydict",

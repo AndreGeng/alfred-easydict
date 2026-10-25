@@ -55,3 +55,36 @@ test('launcher returns valid Alfred guidance for a missing configured Node path'
   });
   assert.equal(JSON.parse(stdout).items[0].title, '找不到 Node.js');
 });
+
+test('CLI uses separate caches for both language settings and validates configuration', async () => {
+  const dir = await mkdtemp(join(tmpdir(), 'alfred-language-test-'));
+  try {
+    const configurations = [
+      [{ primary: 'zh', secondary: 'en' }, '你好'],
+      [{ primary: 'en', secondary: 'ja' }, 'こんにちは'],
+      [{ primary: 'en', secondary: 'fr' }, 'Bonjour']
+    ];
+    const keys = configurations.map(([preferences]) => cacheKey('hello', ['Google'], preferences));
+    assert.equal(new Set(keys).size, configurations.length);
+    for (const [index, [preferences, translation]] of configurations.entries()) {
+      await saveState(join(dir, `${keys[index]}.json`), {
+        id: 'fixture', updated: Date.now(), results: { Google: translation }, pending: [], errors: {}
+      });
+      const { stdout } = await run(process.execPath, ['src/cli.mjs', '--query', 'hello'], {
+        cwd: root, env: { ...process.env, alfred_workflow_cache: dir, providers: 'Google',
+          target_language: preferences.primary, secondary_language: preferences.secondary }
+      });
+      assert.equal(JSON.parse(stdout).items[0].arg, translation);
+    }
+    for (const [primary, secondary, error] of [['xx', 'en', 'target_language'], ['zh', 'xx', 'secondary_language'], ['en', 'en', 'different']]) {
+      const { stdout } = await run(process.execPath, ['src/cli.mjs', '--query', 'hello'], {
+        cwd: root, env: { ...process.env, alfred_workflow_cache: dir, providers: 'Google',
+          target_language: primary, secondary_language: secondary }
+      });
+      const data = JSON.parse(stdout);
+      assert.equal(data.items[0].valid, false);
+      assert.match(data.items[0].title, new RegExp(error));
+    }
+    assert.equal((await readdir(dir)).length, configurations.length);
+  } finally { await rm(dir, { recursive: true, force: true }); }
+});
