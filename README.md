@@ -4,6 +4,8 @@
 
 FelixDict 是运行在 **Alfred、Vicinae 和 Raycast** 中的查词与翻译工具。输入单词查看释义和音标，只记得开头时通过联想找词，也可以翻译短语和句子、朗读结果。查询就在启动器里完成，无需另开词典应用。
 
+如果 FelixDict 对你有帮助，欢迎在 [GitHub 上给个 Star ⭐](https://github.com/AndreGeng/FelixDict)，支持项目继续改进！
+
 ## 功能
 
 - **中英词典**：查看多词性释义、英美音标、词形变化和网络释义。

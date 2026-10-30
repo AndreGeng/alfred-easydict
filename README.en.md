@@ -4,6 +4,8 @@
 
 FelixDict brings **dictionary lookup and translation to Alfred, Vicinae, and Raycast**. Look up definitions and pronunciation, find a word from its first few letters, translate phrases and sentences, and listen to results—all from your launcher.
 
+If FelixDict is useful to you, consider [giving it a star on GitHub ⭐](https://github.com/AndreGeng/FelixDict) to support its continued development!
+
 ## Features
 
 - **English–Chinese dictionary**: definitions by part of speech, British and American phonetics, word forms, and web meanings.
