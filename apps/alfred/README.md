@@ -1,7 +1,7 @@
-# Easydict for Alfred
+# FelixDict for Alfred
 
 
-> **Vicinae 版本**：同仓库现已提供 [Easydict](../vicinae/README.md)，共用查词和拼写建议逻辑，单独构建安装。下文为 Alfred 版说明。
+> **Vicinae 版本**：同仓库现已提供 [FelixDict](../vicinae/README.md)，共用查词和拼写建议逻辑，单独构建安装。下文为 Alfred 版说明。
 
 **中文** · [English](README.en.md)
 
@@ -32,24 +32,24 @@
    npm run build:alfred
    ```
 
-2. 双击生成的 `dist/Alfred-Easydict-0.1.6.alfredworkflow`，在 Alfred 中导入或更新。
-3. 呼出 Alfred，输入 `ed hello`。默认关键词为 `ed`。
-4. 如果找不到 Node.js，在 **Workflows → Easydict for Alfred → Configure Workflow** 中设置 `node_path`。
+2. 双击生成的 `dist/Alfred-FelixDict-0.1.6.alfredworkflow`，在 Alfred 中导入或更新。
+3. 呼出 Alfred，输入 `fd hello`。默认关键词为 `fd`。
+4. 如果找不到 Node.js，在 **Workflows → FelixDict for Alfred → Configure Workflow** 中设置 `node_path`。
 
 启动脚本自动检查 `~/.local/bin/node`、`/opt/homebrew/bin/node`、`/usr/local/bin/node` 和 `PATH`。
-从源码构建需要 Node.js 22.6+、npm 和 Python 3，请在仓库根目录运行上述命令。使用已构建的安装包只需要 Node.js 18+，无需安装开发依赖。
+从源码构建需要 Node.js 22.22.2+、npm 和 Python 3，请在仓库根目录运行上述命令。使用已构建的安装包只需要 Node.js 18+，无需安装开发依赖。
 
 ## 使用
 
 ```text
-ed hello
-ed trans
-ed look forward to
-ed 你好
-ed getHTTPServer
-ed :ja hello
-ed :fr 你好
-ed The request was cancelled because a newer query was started.
+fd hello
+fd trans
+fd look forward to
+fd 你好
+fd getHTTPServer
+fd :ja hello
+fd :fr 你好
+fd The request was cancelled because a newer query was started.
 ```
 
 ### 多语言翻译
@@ -58,31 +58,31 @@ ed The request was cancelled because a newer query was started.
 初始设置为首选 `zh`（简体中文）、第二语言 `en`（英文），保留中文译英文、其他语言译简体中文的行为。
 
 在 **Configure Workflow** 中设置 `target_language` 和 `secondary_language`，填写下表中的语言代码，两者须不同。
-例如设为 `en` 和 `ja` 后，`ed 你好` 译成英文，`ed hello` 译成日文，`ed :fr hello` 仍译成法文。
+例如设为 `en` 和 `ja` 后，`fd 你好` 译成英文，`fd hello` 译成日文，`fd :fr hello` 仍译成法文。
 单次 `:语言` 前缀优先于这两个设置。更改任一语言设置后会使用独立缓存，无需手动清理旧结果。
 
-**指定目标**：使用 `ed :语言代码 内容`。冒号使用英文 `:`，语言代码与内容之间留一个空格。
+**指定目标**：使用 `fd :语言代码 内容`。冒号使用英文 `:`，语言代码与内容之间留一个空格。
 
 ```text
-ed 今日はいい天気です
-ed 안녕하세요
-ed Bonjour, comment allez-vous ?
-ed :ja 你好
-ed :ko 你好
-ed :fr 你好
-ed :en 東京
-ed :zh Bonjour
+fd 今日はいい天気です
+fd 안녕하세요
+fd Bonjour, comment allez-vous ?
+fd :ja 你好
+fd :ko 你好
+fd :fr 你好
+fd :en 東京
+fd :zh Bonjour
 ```
 
 下面是几个查询示例，在线翻译结果可能变化：
 
 | 输入 | 输出示例 |
 | --- | --- |
-| `ed 今日はいい天気です` | 今天天气很好 |
-| `ed 안녕하세요` | 你好 |
-| `ed :ja hello` | こんにちは |
-| `ed :fr 你好` | Bonjour |
-| `ed :de 谢谢` | Danke |
+| `fd 今日はいい天気です` | 今天天气很好 |
+| `fd 안녕하세요` | 你好 |
+| `fd :ja hello` | こんにちは |
+| `fd :fr 你好` | Bonjour |
+| `fd :de 谢谢` | Danke |
 
 支持指定以下 11 种目标语言：
 
@@ -100,9 +100,11 @@ ed :zh Bonjour
 指定目标语言时仅展示翻译结果；有道多词性释义、音标和前缀联想仍限于原有中英词典功能。
 `⌘Enter` 在翻译结果上朗读译文，在词典结果上朗读查询词。包含假名的日语、韩文和中文会选择对应的已安装系统语音。
 
+![在 Alfred 中将你好翻译为日语](../../docs/screenshots/translation.jpg)
+
 ### 只记得单词开头
 
-输入 **2–40 个英文字母**时自动联想，需要启用 Youdao。例如 `ed trans`：
+输入 **2–40 个英文字母**时自动联想，需要启用 Youdao。例如 `fd trans`：
 
 ![输入 trans 后显示 transfer、transition 等候选及中文释义](../../docs/screenshots/suggestions.jpg)
 
@@ -127,16 +129,16 @@ ed :zh Bonjour
 
 ![在 Alfred 中查询 look forward to 的短语释义](../../docs/screenshots/phrase.jpg)
 
-也可以在其他应用中选中文字，通过 Alfred 的 **Universal Actions → Easydict 查词 / 翻译** 查询。
+也可以在其他应用中选中文字，通过 Alfred 的 **Universal Actions → FelixDict 查词 / 翻译** 查询。
 呼出 Alfred 和 Universal Actions 的全局快捷键由你在 Alfred 中设置，Workflow 不占用固定全局快捷键。
 
 ## 配置
 
-入口：**Alfred Preferences → Workflows → Easydict for Alfred → Configure Workflow**。
+入口：**Alfred Preferences → Workflows → FelixDict for Alfred → Configure Workflow**。
 
 | 变量 | 默认值 | 说明 |
 | --- | --- | --- |
-| `keyword` | `ed` | 查询关键词；可改为 `yd`，避免与已有 Workflow 重名 |
+| `keyword` | `fd` | 查询关键词；可改为 `yd`，避免与已有 Workflow 重名 |
 | `providers` | `Youdao,Google` | 逗号分隔，支持 `Youdao`、`Google`、`Bing` |
 | `target_language` | `zh` | 首选目标语言，使用语言代码（如 `en`、`ja`） |
 | `secondary_language` | `en` | 原文为首选目标语言时的翻译目标；须与首选语言不同 |

@@ -58,7 +58,7 @@ async function main() {
   const query = (mode === '--wait' || mode === '--query' ? args : [mode || '', ...args]).join(' ').trim();
   if (!query || query.length > 2000 || !enabled.length) {
     const title = !query ? '输入英文单词、短语或句子' : !enabled.length ? '请在设置中启用 Youdao、Google 或 Bing' : '查询内容过长，请控制在 2000 字符以内';
-    console.log(JSON.stringify({ items: [{ title, subtitle: 'Easydict for Alfred · 多语言翻译', valid: false }] }));
+    console.log(JSON.stringify({ items: [{ title, subtitle: 'FelixDict for Alfred · 多语言翻译', valid: false }] }));
     return;
   }
   let parsed;

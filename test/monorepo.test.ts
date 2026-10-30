@@ -42,3 +42,12 @@ test('both apps speak translated text for Google and Bing, with or without a tar
     assert.deepEqual(resultRows(query, state).map(item => item.speak), expected);
   }
 });
+
+test('Vicinae exposes FelixDict and fd while preserving the installed extension identity', async () => {
+  const manifest = JSON.parse(await readFile(new URL('../apps/vicinae/package.json', import.meta.url), 'utf8'));
+  assert.equal(manifest.name, 'easydict-companion');
+  assert.equal(manifest.title, 'FelixDict');
+  assert.equal(manifest.commands[0].title, 'FelixDict');
+  assert.ok(manifest.commands[0].keywords.includes('fd'));
+  assert.ok(!manifest.commands[0].keywords.includes('ed'));
+});

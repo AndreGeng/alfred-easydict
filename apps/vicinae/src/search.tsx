@@ -90,7 +90,7 @@ export default function Search(props: LaunchProps<{ arguments: { query?: string 
     return row.subtitle.startsWith('有道词典')
       ? (state?.results.Youdao as { phonetic?: string } | undefined)?.phonetic || '' : '';
   }
-  return <List onSelectionChange={setSelectedId} navigationTitle="Easydict" searchText={query} onSearchTextChange={change}
+  return <List onSelectionChange={setSelectedId} navigationTitle="FelixDict" searchText={query} onSearchTextChange={change}
     filtering={false} isLoading={!!state?.pending.length}
     searchBarPlaceholder="单词 / prefix / :ja hello">
     <List.EmptyView title={message} description={shortcutHint} />

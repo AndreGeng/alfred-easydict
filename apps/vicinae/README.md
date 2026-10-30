@@ -1,13 +1,25 @@
-# Easydict for Vicinae
+# FelixDict for Vicinae
 
 [English](README.en.md) · **中文**
 
 与本仓库 Alfred Workflow 共用查词、拼写建议和翻译逻辑的 Vicinae 扩展。
 它是独立的本地扩展，不是 Raycast 商店中的 Easy Dictionary。
 
+## 界面预览
+
+以下为 macOS 上的实际截图，展示查词结果、音标和前缀联想。
+
+![Vicinae 中的 fd 命令入口](../../docs/screenshots/vicinae-entry.jpg)
+
+![Vicinae 中的查词与音标](../../docs/screenshots/vicinae-dictionary.jpg)
+
+![Vicinae 中的前缀联想](../../docs/screenshots/vicinae-suggestions.jpg)
+
+![Vicinae 中的日语翻译](../../docs/screenshots/vicinae-translation.jpg)
+
 ## 安装
 
-需要 Vicinae 0.29.2 或更新版本、用于构建的 Node.js 22.6+ 与 npm，以及运行时的 `/usr/bin/curl`。
+需要 Vicinae 0.29.2 或更新版本、用于构建的 Node.js 22.22.2+ 与 npm，以及运行时的 `/usr/bin/curl`。
 从**完整仓库**构建，因为扩展会引用 `packages/core/` 的共享代码：
 
 ```sh
@@ -15,16 +27,17 @@ npm ci
 npm run build:vicinae
 ```
 
-构建会安装到当前用户的 Vicinae 扩展目录。搜索 **Easydict**，确认所属扩展为
-**Easydict**。如果首次构建后未出现，退出并重新打开 Vicinae。
+构建会安装到当前用户的 Vicinae 扩展目录。搜索 **FelixDict**，确认所属扩展为
+**FelixDict**。如果首次构建后未出现，退出并重新打开 Vicinae。
 已构建的扩展包含共享代码，不依赖源仓库位置，也不需要运行 Alfred 或 Raycast。
 
 这不会安装或更新 Alfred Workflow；Alfred 仍使用仓库根目录的原有构建命令。
 
 ## 使用
 
-在 Vicinae 主搜索输入 `ed`、`查词` 或 `翻译`，即可搜索 **Easydict**；选中后回车进入查词。这些是搜索关键词，不是独占别名。
+在 Vicinae 主搜索输入 `fd`、`查词` 或 `翻译`，即可搜索 **FelixDict**；选中后回车进入查词。这些是搜索关键词，不是独占别名。
 
+如需专用别名，可在 Vicinae 设置中将 FelixDict 命令的别名设为 `fd`。别名属于用户设置，扩展只能声明搜索关键词。实时联想在进入命令后的查词页面中显示，主搜索的可选参数框不会显示查词联想。
 
 输入 `hello`、`trans`、`你好`、`:ja hello` 或句子。可以直接打开命令后输入，也可以在命令的可选参数中传入查询。
 
@@ -43,7 +56,7 @@ npm run build:vicinae
 
 ## 配置
 
-在 Vicinae 设置中找到 **Easydict** 的扩展设置：
+在 Vicinae 设置中找到 **FelixDict** 的扩展设置：
 
 - **Preferred target language**：默认 `zh`。
 - **Secondary language**：默认 `en`，原文语言与首选语言一致时使用，必须不同于首选语言。

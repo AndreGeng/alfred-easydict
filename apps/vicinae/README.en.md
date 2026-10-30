@@ -1,13 +1,25 @@
-# Easydict for Vicinae
+# FelixDict for Vicinae
 
 [中文](README.md) · **English**
 
 A Vicinae extension sharing dictionary, prefix suggestion, and translation logic with this repository's Alfred Workflow.
 This is a separate local extension, not Easy Dictionary from the Raycast Store.
 
+## Screenshots
+
+Actual macOS screenshots showing dictionary results, phonetics, and prefix suggestions.
+
+![FelixDict command with the fd alias](../../docs/screenshots/vicinae-entry.jpg)
+
+![Definitions and phonetics in Vicinae](../../docs/screenshots/vicinae-dictionary.jpg)
+
+![Prefix suggestions in Vicinae](../../docs/screenshots/vicinae-suggestions.jpg)
+
+![Japanese translation in Vicinae](../../docs/screenshots/vicinae-translation.jpg)
+
 ## Install
 
-Requires Vicinae 0.29.2+, Node.js 22.6+ and npm for building, and `/usr/bin/curl` at runtime.
+Requires Vicinae 0.29.2+, Node.js 22.22.2+ and npm for building, and `/usr/bin/curl` at runtime.
 Build from the **complete repository** because the extension imports shared code from `packages/core/`:
 
 ```sh
@@ -15,15 +27,16 @@ npm ci
 npm run build:vicinae
 ```
 
-This installs into your local Vicinae extension directory. Search for **Easydict** under **Easydict**.
+This installs into your local Vicinae extension directory. Search for the **FelixDict** command, listed under the **FelixDict** extension.
 If it does not appear after the first build, quit and reopen Vicinae.
 The built extension includes the shared code and does not depend on the repository location, Alfred, or Raycast.
 This does not install or update the Alfred Workflow; its existing root build command remains available.
 
 ## Use
 
-Search for `ed`, `查词`, `翻译`, `dictionary`, or `translate` in Vicinae, then select **Easydict** and press Enter. These are search keywords, not exclusive aliases.
+Search for `fd`, `查词`, `翻译`, `dictionary`, or `translate` in Vicinae, then select **FelixDict** and press Enter. These are search keywords, not exclusive aliases.
 
+For a dedicated shortcut, set the FelixDict command alias to `fd` in Vicinae settings. Aliases are user settings; the extension only declares search keywords. After entering the command, type there for live suggestions; the main launcher’s optional argument field does not show dictionary suggestions.
 
 Enter `hello`, `trans`, `你好`, `:ja hello`, or a sentence. You can also supply text through the command's optional argument.
 
@@ -41,7 +54,7 @@ Linux desktop interactions have not yet been tested on a physical Linux installa
 
 ## Settings
 
-Find **Easydict** in Vicinae's extension settings:
+Find **FelixDict** in Vicinae's extension settings:
 
 - **Preferred target language**: `zh` by default.
 - **Secondary language**: `en` by default; used when the source matches the preferred language. Must differ from the preferred language.

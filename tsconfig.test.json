@@ -8,6 +8,7 @@
     "test/**/*.ts",
     "apps/vicinae/src/model.mts",
     "apps/vicinae/src/speech.mts",
-    "apps/vicinae/scripts/*.mts"
+    "apps/vicinae/scripts/*.mts",
+    "apps/raycast/scripts/*.mts"
   ]
 }

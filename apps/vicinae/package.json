@@ -1,7 +1,7 @@
 {
   "name": "easydict-companion",
-  "title": "Easydict",
-  "description": "Prefix suggestions and translation with the same behavior as Alfred Easydict",
+  "title": "FelixDict",
+  "description": "Dictionary, prefix suggestions and translation for Vicinae",
   "icon": "icon.png",
   "author": "AndreGeng",
   "license": "MIT",
@@ -11,7 +11,7 @@
   "commands": [
     {
       "name": "search",
-      "title": "Easydict",
+      "title": "FelixDict",
       "description": "Look up words, complete spellings and translate text",
       "mode": "view",
       "arguments": [
@@ -23,7 +23,7 @@
         }
       ],
       "keywords": [
-        "ed",
+        "fd",
         "\u67e5\u8bcd",
         "\u7ffb\u8bd1",
         "dictionary",

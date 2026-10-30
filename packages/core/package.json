@@ -27,6 +27,10 @@
     "./speech": {
       "types": "./dist/speech.d.ts",
       "default": "./dist/speech.js"
+    },
+    "./session": {
+      "types": "./dist/session.d.ts",
+      "default": "./dist/session.js"
     }
   }
 }

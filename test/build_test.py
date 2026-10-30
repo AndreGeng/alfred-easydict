@@ -20,7 +20,7 @@ spec.loader.exec_module(build)
 class BuildTests(unittest.TestCase):
     def test_archive_runs_outside_repository_with_local_shared_package(self):
         build.main()
-        archive = build.DIST / f"Alfred-Easydict-{build.VERSION}.alfredworkflow"
+        archive = build.DIST / f"Alfred-FelixDict-{build.VERSION}.alfredworkflow"
         with tempfile.TemporaryDirectory(prefix="easydict-package-") as temporary:
             target = Path(temporary)
             with ZipFile(archive) as package:
@@ -40,6 +40,13 @@ class BuildTests(unittest.TestCase):
                    "target_language": "zh", "secondary_language": "en"}
             output = subprocess.check_output(["node", "dist/cli.js", "--query", "hello"], cwd=target, env=env, text=True)
             self.assertEqual(json.loads(output)["items"][0]["arg"], "packaged result")
+
+    def test_brand_and_keyword(self):
+        manifest = build.manifest()
+        self.assertEqual(manifest["name"], "FelixDict for Alfred")
+        settings = {s["variable"]: s for s in manifest["userconfigurationconfig"]}
+        self.assertEqual(settings["keyword"]["config"]["default"], "fd")
+        self.assertEqual(manifest["bundleid"], "local.alfred-easydict")
 
     def test_speech_keeps_window_open_without_affecting_copy(self):
         connections = build.manifest()["connections"]["SEARCH"]

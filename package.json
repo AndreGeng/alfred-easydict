@@ -3,18 +3,20 @@
   "version": "0.1.6",
   "private": true,
   "type": "module",
-  "description": "Shared TypeScript dictionary engine with Alfred and Vicinae apps",
+  "description": "Shared TypeScript dictionary engine with Alfred, Vicinae and Raycast apps",
   "engines": {
-    "node": ">=22.6"
+    "node": ">=22.22.2"
   },
   "scripts": {
     "build:core": "tsc -p packages/core",
     "build:alfred": "npm run build:core && tsc -p apps/alfred && python3 apps/alfred/scripts/build.py",
     "build:vicinae": "npm run build:core && npm run build -w easydict-companion --",
-    "build": "npm run build:alfred && npm run build:vicinae",
-    "typecheck": "npm run build:core && tsc -p apps/alfred --noEmit && npm run typecheck -w easydict-companion && tsc -p tsconfig.test.json && npm run typecheck:python",
+    "build": "npm run build:alfred && npm run build:vicinae && npm run build:raycast",
+    "typecheck": "npm run build:core && tsc -p apps/alfred --noEmit && npm run typecheck -w easydict-companion && npm run typecheck -w felixdict-raycast && tsc -p tsconfig.test.json && npm run typecheck:python",
     "test": "npm run build:core && tsc -p apps/alfred && node --experimental-strip-types --test test/*.test.ts && python3 -m unittest discover -s test -p \"*_test.py\"",
-    "typecheck:python": "pyright"
+    "typecheck:python": "pyright",
+    "build:raycast": "npm run build:core && npm run build -w felixdict-raycast",
+    "dev:raycast": "npm run build:core && npm run dev -w felixdict-raycast"
   },
   "license": "MIT",
   "workspaces": [

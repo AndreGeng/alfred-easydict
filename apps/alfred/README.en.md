@@ -1,7 +1,7 @@
-# Easydict for Alfred
+# FelixDict for Alfred
 
 
-> **Vicinae version**: this repository also includes [Easydict](../vicinae/README.en.md), sharing dictionary and prefix suggestions with a separate build and installation. The instructions below cover Alfred.
+> **Vicinae version**: this repository also includes [FelixDict](../vicinae/README.en.md), sharing dictionary and prefix suggestions with a separate build and installation. The instructions below cover Alfred.
 
 [中文](README.md) · **English**
 
@@ -32,24 +32,24 @@ Requires **macOS, Alfred 5 with Powerpack, and Node.js 18+**. There are no npm r
    npm run build:alfred
    ```
 
-2. Double-click `dist/Alfred-Easydict-0.1.6.alfredworkflow` to import or update it in Alfred.
-3. Open Alfred and enter `ed hello`. The default keyword is `ed`.
-4. If Node.js cannot be found, set `node_path` under **Workflows → Easydict for Alfred → Configure Workflow**.
+2. Double-click `dist/Alfred-FelixDict-0.1.6.alfredworkflow` to import or update it in Alfred.
+3. Open Alfred and enter `fd hello`. The default keyword is `fd`.
+4. If Node.js cannot be found, set `node_path` under **Workflows → FelixDict for Alfred → Configure Workflow**.
 
 The launcher checks `~/.local/bin/node`, `/opt/homebrew/bin/node`, `/usr/local/bin/node`, and `PATH`.
-Building from source requires Node.js 22.6+, npm, and Python 3. Run the commands above at the repository root. An existing package only needs Node.js 18+; no development dependency installation is required.
+Building from source requires Node.js 22.22.2+, npm, and Python 3. Run the commands above at the repository root. An existing package only needs Node.js 18+; no development dependency installation is required.
 
 ## Usage
 
 ```text
-ed hello
-ed trans
-ed look forward to
-ed 你好
-ed getHTTPServer
-ed :ja hello
-ed :fr 你好
-ed The request was cancelled because a newer query was started.
+fd hello
+fd trans
+fd look forward to
+fd 你好
+fd getHTTPServer
+fd :ja hello
+fd :fr 你好
+fd The request was cancelled because a newer query was started.
 ```
 
 ### Multilingual translation
@@ -58,31 +58,31 @@ ed The request was cancelled because a newer query was started.
 The initial settings are `zh` (Simplified Chinese) and `en` (English), preserving Chinese-to-English and other-languages-to-Chinese behavior.
 
 Set `target_language` and `secondary_language` in **Configure Workflow**, using two different language codes from the table below.
-For example, with `en` and `ja`, `ed 你好` translates into English, `ed hello` into Japanese, and `ed :fr hello` still into French.
+For example, with `en` and `ja`, `fd 你好` translates into English, `fd hello` into Japanese, and `fd :fr hello` still into French.
 An explicit `:language` prefix overrides both settings. Each language pair uses a separate cache, so changing either setting does not reuse old translations.
 
-**Explicit target**: use `ed :language-code text`. Use an ASCII colon (`:`) and a space between the language code and the text.
+**Explicit target**: use `fd :language-code text`. Use an ASCII colon (`:`) and a space between the language code and the text.
 
 ```text
-ed 今日はいい天気です
-ed 안녕하세요
-ed Bonjour, comment allez-vous ?
-ed :ja 你好
-ed :ko 你好
-ed :fr 你好
-ed :en 東京
-ed :zh Bonjour
+fd 今日はいい天気です
+fd 안녕하세요
+fd Bonjour, comment allez-vous ?
+fd :ja 你好
+fd :ko 你好
+fd :fr 你好
+fd :en 東京
+fd :zh Bonjour
 ```
 
 Example queries and outputs (online translations may vary):
 
 | Input | Example output |
 | --- | --- |
-| `ed 今日はいい天気です` | 今天天气很好 |
-| `ed 안녕하세요` | 你好 |
-| `ed :ja hello` | こんにちは |
-| `ed :fr 你好` | Bonjour |
-| `ed :de 谢谢` | Danke |
+| `fd 今日はいい天気です` | 今天天气很好 |
+| `fd 안녕하세요` | 你好 |
+| `fd :ja hello` | こんにちは |
+| `fd :fr 你好` | Bonjour |
+| `fd :de 谢谢` | Danke |
 
 The following 11 target languages can be selected explicitly:
 
@@ -99,9 +99,11 @@ Enable Google or Bing; Google is used by default. The translation service detect
 Explicit targets show translation results only. Youdao's definitions, phonetics, and prefix suggestions retain their existing English–Chinese scope.
 `⌘Enter` speaks the translation for translation results and the query word for dictionary results. Japanese containing kana, Korean, and Chinese use a matching installed system voice.
 
+![Japanese translation in Alfred](../../docs/screenshots/translation.jpg)
+
 ### Find a word from its prefix
 
-Suggestions appear for **2–40 English letters** when Youdao is enabled. For example, `ed trans`:
+Suggestions appear for **2–40 English letters** when Youdao is enabled. For example, `fd trans`:
 
 ![Prefix suggestions for trans, including transfer and transition with Chinese glosses](../../docs/screenshots/suggestions.jpg)
 
@@ -126,16 +128,16 @@ The suggestion endpoint may itself return shortened glosses. Press Tab to retrie
 
 ![Phrase definitions for look forward to in Alfred](../../docs/screenshots/phrase.jpg)
 
-You can also select text in another app and use **Universal Actions → Easydict 查词 / 翻译**.
+You can also select text in another app and use **Universal Actions → FelixDict 查词 / 翻译**.
 Alfred's global activation and Universal Actions shortcuts are configured in Alfred. This Workflow does not assign a fixed global hotkey.
 
 ## Configuration
 
-Open **Alfred Preferences → Workflows → Easydict for Alfred → Configure Workflow**.
+Open **Alfred Preferences → Workflows → FelixDict for Alfred → Configure Workflow**.
 
 | Variable | Default | Description |
 | --- | --- | --- |
-| `keyword` | `ed` | Lookup keyword; you can use `yd` if it does not conflict with another Workflow |
+| `keyword` | `fd` | Lookup keyword; you can use `yd` if it does not conflict with another Workflow |
 | `providers` | `Youdao,Google` | Comma-separated list: `Youdao`, `Google`, `Bing` |
 | `target_language` | `zh` | Preferred target language code, such as `en` or `ja` |
 | `secondary_language` | `en` | Target when the source matches the preferred language; must be different |
