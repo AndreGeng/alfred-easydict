@@ -14,7 +14,7 @@ Output: `dist/release/<version>/` contains an Alfred workflow, Vicinae precompil
 
 Before tagging, update the root/core/Alfred package versions and workspace dependency versions together, update examples and docs/RELEASE.md, then regenerate package-lock.json. Test source-ZIP installation from a separate directory; verify actual macOS launcher behavior. Linux desktop interaction and direct Raycast .rayext import remain unverified and must stay labelled accordingly.
 
-Push a matching `v<version>` tag to run `.github/workflows/release.yml`. The workflow checks the tag, types, tests, archives and checksums, then creates a **draft** GitHub Release with all five files. Review the attachments and installation notes before publishing. Manual workflow dispatch builds downloadable Actions artifacts without publishing a Release.
+Push a matching `v<version>` tag to run `.github/workflows/release.yml`. The workflow checks the tag, types, tests, archives and checksums, then creates a **draft** GitHub Release with all five files. Review the attachments and installation notes before publishing. Manual workflow dispatch with an empty release_tag builds Actions artifacts only; specify an existing tag to rebuild that exact tag into a draft. Retries may replace draft assets but refuse to overwrite a published release.
 
 发布前更新版本、锁文件和说明；推送匹配的版本标签后，CI 会检查并生成含全部附件的 Release 草稿，审核附件与安装说明后再发布。手动运行 workflow 只生成 Actions 产物。勿覆盖旧版 Release 附件；需要修复时发布新版本。
 
