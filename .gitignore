@@ -4,3 +4,4 @@ dist/
 .env*
 node_modules/
 __pycache__/
+apps/raycast/assets/build-info.json

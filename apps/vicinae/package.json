@@ -165,7 +165,7 @@
   },
   "dependencies": {
     "@vicinae/api": "0.29.2",
-    "@easydict/core": "0.2.0"
+    "@easydict/core": "0.2.1"
   },
   "devDependencies": {
     "@types/node": "^22.0.0",

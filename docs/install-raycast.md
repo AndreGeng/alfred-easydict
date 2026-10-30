@@ -20,6 +20,12 @@ After a successful build, press Ctrl+C; the extension remains installed. Search 
 更新时使用新版本 ZIP 重复这些步骤。回退时使用旧版 ZIP 重新安装。已安装的扩展不依赖解压目录运行。
 To update, repeat these steps with the new ZIP. To roll back, reinstall an older ZIP. The installed extension does not need the extracted directory at runtime.
 
+## 查看版本 / Check version
+
+从 v0.2.1 起，在插件内打开 Actions（⌘K），选择“关于 FelixDict / About FelixDict”，可查看版本号、Git 提交和构建类型。干净的对应版本 Git tag 构建标记为 Release；本地改动标记为 Development。Release 源码 ZIP 会保留打包时的版本信息；确认下载包来源仍应校验 SHA256SUMS。
+
+Starting with v0.2.1, open Actions (⌘K) inside the extension and select “About FelixDict” to see the version, Git commit and build type. Clean builds at the matching version tag are marked Release; local changes are marked Development. Release source ZIPs preserve their original build metadata. Verify SHA256SUMS to confirm the downloaded artifact.
+
 ## .rayext 包 / .rayext archive
 
 Release 同时提供官方 `ray bundle` 生成的预编译 `.rayext` ZIP。它不是 `.rayconfig` 配置备份。当前本机 Raycast 1.104.31 未提供已验证的直接导入流程，因此普通用户请使用上面的源码 ZIP；不要假设双击即可安装。

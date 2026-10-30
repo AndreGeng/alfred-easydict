@@ -11,8 +11,8 @@ test('release archives contain runnable entries, legal notices and independent s
   const expected: Record<string, string[]> = {
     [`Alfred-FelixDict-${version}.alfredworkflow`]: ['info.plist', 'launch.sh'],
     [`FelixDict-Vicinae-${version}.zip`]: ['easydict-companion/package.json', 'easydict-companion/search.js', 'easydict-companion/assets/legal/LICENSE', 'INSTALL.md'],
-    [`FelixDict-Raycast-${version}.rayext`]: ['package.json', 'search.js', 'assets/legal/LICENSE'],
-    [`FelixDict-Raycast-source-${version}.zip`]: ['package.json', 'package-lock.json', 'apps/raycast/src/search.tsx', 'packages/core/src/core.ts', 'INSTALL.md'].map(x => `FelixDict-Raycast-source-${version}/${x}`),
+    [`FelixDict-Raycast-${version}.rayext`]: ['package.json', 'search.js', 'assets/legal/LICENSE', 'assets/build-info.json'],
+    [`FelixDict-Raycast-source-${version}.zip`]: ['package.json', 'package-lock.json', 'apps/raycast/src/search.tsx', 'apps/raycast/assets/build-info.json', 'packages/core/src/core.ts', 'INSTALL.md'].map(x => `FelixDict-Raycast-source-${version}/${x}`),
   };
   const sums = readFileSync(join(dir, 'SHA256SUMS'), 'utf8');
   for (const [file, entries] of Object.entries(expected)) {
