@@ -14,6 +14,22 @@ FelixDict brings **dictionary lookup and translation to Alfred, Vicinae, and Ray
 
 Youdao dictionary and Google translation are enabled by default, with no API key configuration required. Dictionary lookup and prefix suggestions cover English–Chinese; other languages use translation services. Queries require an internet connection. OCR, vocabulary collections, AI translation, and a complete offline dictionary are not included.
 
+## Which version should I use?
+
+Alfred, Vicinae, and Raycast are keyboard-driven application launchers. FelixDict is a plugin, so install the corresponding launcher first. A launcher's operating-system support does not mean FelixDict supports every one of those systems.
+
+| Launcher | Desktop operating systems supported by the launcher | Current FelixDict support and validation | Installation |
+| --- | --- | --- | --- |
+| Alfred | macOS | macOS, tested on a real installation; requires Alfred 5 Powerpack and Node.js 18+ | [Alfred edition](apps/alfred/README.en.md) |
+| Vicinae | Linux, macOS (Apple Silicon, beta), Windows (since 0.29.0) | Tested on macOS; Linux adaptation implemented but desktop interaction not yet tested on a real installation; Windows not yet supported | [Vicinae edition](apps/vicinae/README.en.md) |
+| Raycast | macOS, Windows | Currently macOS only, tested on a real installation; Windows not yet supported | [Raycast edition](apps/raycast/README.en.md) |
+
+- **macOS**: if you already use one of these launchers, install its FelixDict edition. The Alfred edition requires the paid Powerpack.
+- **Linux / Arch / XFCE**: use the Vicinae edition. Desktop interaction still needs verification in your environment; speech requires a configured Speech Dispatcher (`spd-say`).
+- **Windows**: FelixDict has no Windows-compatible edition yet. Installing Raycast or Vicinae does not make this repository's extensions compatible with Windows.
+
+Launcher platform information checked on 2026-10-30: [Alfred](https://www.alfredapp.com/), [Vicinae platform overview](https://docs.vicinae.com/os-support) and [Windows installation guide](https://docs.vicinae.com/install/windows), and [Raycast for Windows](https://www.raycast.com/windows). Vicinae's overview has not yet updated its Windows status; this table follows the newer Windows installation guide.
+
 ## Alfred
 
 For **macOS with Alfred 5 Powerpack**. Requires Node.js 18+ at runtime.

@@ -6,7 +6,7 @@ Dictionary definitions, phonetics, spelling suggestions, and translation in Rayc
 
 ## Installation
 
-Currently supports macOS. Requires Raycast; source builds require Node.js 22.22.2+, npm, and the complete repository.
+The FelixDict Raycast extension currently supports macOS only. Raycast itself also supports Windows, but this extension has not yet been adapted for Windows. Requires Raycast; source builds require Node.js 22.22.2+, npm, and the complete repository.
 
 Run from the repository root:
 

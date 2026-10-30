@@ -6,7 +6,7 @@
 
 ## 安装
 
-当前支持 macOS。需要 Raycast；从源码构建需要 Node.js 22.22.2+、npm，以及完整仓库。
+FelixDict 的 Raycast 扩展目前仅支持 macOS。Raycast 本身也有 Windows 版本，但本扩展尚未适配 Windows。需要 Raycast；从源码构建需要 Node.js 22.22.2+、npm，以及完整仓库。
 
 在仓库根目录执行：
 

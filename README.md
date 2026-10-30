@@ -14,6 +14,22 @@ FelixDict 是运行在 **Alfred、Vicinae 和 Raycast** 中的查词与翻译工
 
 默认使用有道词典和 Google 翻译，无需配置 API Key。词典和前缀联想以中英为范围；多语言查询使用翻译服务。查询需要联网，目前不包含 OCR、生词本、AI 翻译或完整离线词典。
 
+## 选哪个版本？
+
+Alfred、Vicinae 和 Raycast 都是用键盘呼出的应用启动器；FelixDict 是安装在其中的插件，需要先安装对应启动器。启动器支持某个系统，并不代表 FelixDict 已经适配该系统。
+
+| 启动器 | 启动器支持的桌面系统 | FelixDict 当前支持与验证范围 | 安装说明 |
+| --- | --- | --- | --- |
+| Alfred | macOS | macOS，已实机验证；需要 Alfred 5 Powerpack 和 Node.js 18+ | [Alfred 版](apps/alfred/README.md) |
+| Vicinae | Linux、macOS（Apple Silicon，Beta）、Windows（0.29.0 起） | macOS 已实机验证；Linux 已实现适配，桌面交互尚未实机验证；Windows 尚未适配 | [Vicinae 版](apps/vicinae/README.md) |
+| Raycast | macOS、Windows | 目前仅支持 macOS，已实机验证；Windows 尚未适配 | [Raycast 版](apps/raycast/README.md) |
+
+- **macOS**：已有上述启动器，就安装对应版本；使用 Alfred 版需要付费 Powerpack。
+- **Linux / Arch / XFCE**：使用 Vicinae 版；目前仍需在你的桌面环境验证交互，朗读需要配置 Speech Dispatcher（`spd-say`）。
+- **Windows**：FelixDict 暂无适配版本，即使已安装 Raycast 或 Vicinae，也不能直接使用本仓库的扩展。
+
+启动器平台信息核对于 2026-10-30：[Alfred 官网](https://www.alfredapp.com/)、[Vicinae 平台说明](https://docs.vicinae.com/os-support)及 [Windows 安装说明](https://docs.vicinae.com/install/windows)、[Raycast Windows](https://www.raycast.com/windows)。Vicinae 的平台概览尚未更新 Windows 状态，此处以较新的 Windows 安装说明为准。
+
 ## Alfred
 
 适用于 **macOS + Alfred 5 Powerpack**，运行需要 Node.js 18+。
