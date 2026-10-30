@@ -1,0 +1,176 @@
+{
+  "name": "easydict-companion",
+  "title": "Easydict",
+  "description": "Prefix suggestions and translation with the same behavior as Alfred Easydict",
+  "icon": "icon.png",
+  "author": "AndreGeng",
+  "license": "MIT",
+  "categories": [
+    "Productivity"
+  ],
+  "commands": [
+    {
+      "name": "search",
+      "title": "Easydict",
+      "description": "Look up words, complete spellings and translate text",
+      "mode": "view",
+      "arguments": [
+        {
+          "name": "query",
+          "type": "text",
+          "placeholder": "Word or sentence",
+          "required": false
+        }
+      ],
+      "keywords": [
+        "ed",
+        "\u67e5\u8bcd",
+        "\u7ffb\u8bd1",
+        "dictionary",
+        "translate"
+      ]
+    }
+  ],
+  "preferences": [
+    {
+      "name": "target_language",
+      "type": "dropdown",
+      "title": "Preferred target language",
+      "description": "Preferred target language",
+      "required": false,
+      "default": "zh",
+      "data": [
+        {
+          "title": "zh",
+          "value": "zh"
+        },
+        {
+          "title": "en",
+          "value": "en"
+        },
+        {
+          "title": "ja",
+          "value": "ja"
+        },
+        {
+          "title": "ko",
+          "value": "ko"
+        },
+        {
+          "title": "fr",
+          "value": "fr"
+        },
+        {
+          "title": "de",
+          "value": "de"
+        },
+        {
+          "title": "es",
+          "value": "es"
+        },
+        {
+          "title": "it",
+          "value": "it"
+        },
+        {
+          "title": "pt",
+          "value": "pt"
+        },
+        {
+          "title": "ru",
+          "value": "ru"
+        },
+        {
+          "title": "ar",
+          "value": "ar"
+        }
+      ]
+    },
+    {
+      "name": "secondary_language",
+      "type": "dropdown",
+      "title": "Secondary language",
+      "description": "Secondary language",
+      "required": false,
+      "default": "en",
+      "data": [
+        {
+          "title": "zh",
+          "value": "zh"
+        },
+        {
+          "title": "en",
+          "value": "en"
+        },
+        {
+          "title": "ja",
+          "value": "ja"
+        },
+        {
+          "title": "ko",
+          "value": "ko"
+        },
+        {
+          "title": "fr",
+          "value": "fr"
+        },
+        {
+          "title": "de",
+          "value": "de"
+        },
+        {
+          "title": "es",
+          "value": "es"
+        },
+        {
+          "title": "it",
+          "value": "it"
+        },
+        {
+          "title": "pt",
+          "value": "pt"
+        },
+        {
+          "title": "ru",
+          "value": "ru"
+        },
+        {
+          "title": "ar",
+          "value": "ar"
+        }
+      ]
+    },
+    {
+      "name": "providers",
+      "type": "textfield",
+      "title": "Providers",
+      "description": "Comma-separated: Youdao,Google,Bing",
+      "required": false,
+      "default": "Youdao,Google"
+    },
+    {
+      "name": "cache_hours",
+      "type": "textfield",
+      "title": "Cache hours",
+      "description": "0\u2013168; 0 disables caching",
+      "required": false,
+      "default": "24"
+    }
+  ],
+  "scripts": {
+    "build": "vici build",
+    "dev": "vici develop",
+    "typecheck": "tsc --noEmit",
+    "prebuild": "node --experimental-strip-types scripts/prepare-assets.mts"
+  },
+  "dependencies": {
+    "@vicinae/api": "0.29.2",
+    "@easydict/core": "0.1.6"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@types/react": "^19.0.0",
+    "typescript": "^5.9.0"
+  },
+  "type": "commonjs"
+}

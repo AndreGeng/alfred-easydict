@@ -1,13 +1,27 @@
 {
-  "name": "alfred-easydict",
+  "name": "easydict-monorepo",
   "version": "0.1.6",
   "private": true,
   "type": "module",
-  "description": "Independent Alfred dictionary and translator adapted from Raycast Easydict",
-  "engines": { "node": ">=18" },
-  "scripts": {
-    "test": "node --test && python3 -m unittest discover -s test -p '*_test.py'",
-    "build": "python3 scripts/build.py"
+  "description": "Shared TypeScript dictionary engine with Alfred and Vicinae apps",
+  "engines": {
+    "node": ">=22.6"
   },
-  "license": "MIT"
+  "scripts": {
+    "build:core": "tsc -p packages/core",
+    "build:alfred": "npm run build:core && tsc -p apps/alfred && python3 apps/alfred/scripts/build.py",
+    "build:vicinae": "npm run build:core && npm run build -w easydict-companion --",
+    "build": "npm run build:alfred && npm run build:vicinae",
+    "typecheck": "npm run build:core && tsc -p apps/alfred --noEmit && npm run typecheck -w easydict-companion && tsc -p tsconfig.test.json",
+    "test": "npm run build:core && tsc -p apps/alfred && node --experimental-strip-types --test test/*.test.ts && python3 -m unittest discover -s test -p \"*_test.py\""
+  },
+  "license": "MIT",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "devDependencies": {
+    "typescript": "^5.9.0",
+    "@types/node": "^22.0.0"
+  }
 }

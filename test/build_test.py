@@ -1,15 +1,44 @@
 """Package compatibility regression checks against Alfred 5 node schemas."""
 import importlib.util
 import unittest
+import tempfile
+import subprocess
+import os
+import json
+import hashlib
+from zipfile import ZipFile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-spec = importlib.util.spec_from_file_location("build", ROOT / "scripts/build.py")
+spec = importlib.util.spec_from_file_location("build", ROOT / "apps/alfred/scripts/build.py")
 build = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(build)
 
 
 class BuildTests(unittest.TestCase):
+    def test_archive_runs_outside_repository_with_local_shared_package(self):
+        build.main()
+        archive = build.DIST / f"Alfred-Easydict-{build.VERSION}.alfredworkflow"
+        with tempfile.TemporaryDirectory(prefix="easydict-package-") as temporary:
+            target = Path(temporary)
+            with ZipFile(archive) as package:
+                self.assertIn("dist/cli.js", package.namelist())
+                self.assertIn("node_modules/@easydict/core/dist/providers.js", package.namelist())
+                self.assertFalse(any(name.endswith((".ts", ".tsx", ".mjs")) for name in package.namelist()))
+                package.extractall(target)
+            cache = target / "cache"
+            cache.mkdir()
+            import time
+            key = hashlib.sha256(json.dumps([4, "hello", ["Youdao", "Suggest"], "zh", "en"], separators=(",", ":")).encode()).hexdigest()
+            (cache / f"{key}.json").write_text(json.dumps({
+                "updated": int(time.time() * 1000), "results": {"Youdao": {"senses": [{"text": "packaged result"}]}},
+                "errors": {}, "pending": []
+            }))
+            env = {**os.environ, "alfred_workflow_cache": str(cache), "providers": "Youdao",
+                   "target_language": "zh", "secondary_language": "en"}
+            output = subprocess.check_output(["node", "dist/cli.js", "--query", "hello"], cwd=target, env=env, text=True)
+            self.assertEqual(json.loads(output)["items"][0]["arg"], "packaged result")
+
     def test_speech_keeps_window_open_without_affecting_copy(self):
         connections = build.manifest()["connections"]["SEARCH"]
         normal = next(c for c in connections if c["modifiers"] == 0)

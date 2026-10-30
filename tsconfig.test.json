@@ -1,0 +1,13 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "allowImportingTsExtensions": true
+  },
+  "include": [
+    "test/**/*.ts",
+    "apps/vicinae/src/model.mts",
+    "apps/vicinae/src/speech.mts",
+    "apps/vicinae/scripts/*.mts"
+  ]
+}
