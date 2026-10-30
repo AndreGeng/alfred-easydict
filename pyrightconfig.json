@@ -1,0 +1,8 @@
+{
+  "include": [
+    "apps/alfred/scripts",
+    "test/build_test.py"
+  ],
+  "typeCheckingMode": "basic",
+  "pythonVersion": "3.10"
+}

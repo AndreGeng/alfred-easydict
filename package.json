@@ -12,8 +12,9 @@
     "build:alfred": "npm run build:core && tsc -p apps/alfred && python3 apps/alfred/scripts/build.py",
     "build:vicinae": "npm run build:core && npm run build -w easydict-companion --",
     "build": "npm run build:alfred && npm run build:vicinae",
-    "typecheck": "npm run build:core && tsc -p apps/alfred --noEmit && npm run typecheck -w easydict-companion && tsc -p tsconfig.test.json",
-    "test": "npm run build:core && tsc -p apps/alfred && node --experimental-strip-types --test test/*.test.ts && python3 -m unittest discover -s test -p \"*_test.py\""
+    "typecheck": "npm run build:core && tsc -p apps/alfred --noEmit && npm run typecheck -w easydict-companion && tsc -p tsconfig.test.json && npm run typecheck:python",
+    "test": "npm run build:core && tsc -p apps/alfred && node --experimental-strip-types --test test/*.test.ts && python3 -m unittest discover -s test -p \"*_test.py\"",
+    "typecheck:python": "pyright"
   },
   "license": "MIT",
   "workspaces": [
@@ -21,7 +22,8 @@
     "packages/*"
   ],
   "devDependencies": {
-    "typescript": "^5.9.0",
-    "@types/node": "^22.0.0"
+    "@types/node": "^22.0.0",
+    "pyright": "1.1.414",
+    "typescript": "^5.9.0"
   }
 }

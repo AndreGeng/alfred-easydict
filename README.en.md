@@ -27,7 +27,7 @@ Requires Node.js 22.6+, npm, and Python 3 for Alfred packaging. All Node source,
 
 ```sh
 npm ci
-npm run typecheck
+npm run typecheck  # TypeScript + Python (Pyright)
 npm test
 npm run build:alfred
 npm run build:vicinae

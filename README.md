@@ -29,7 +29,7 @@ docs/                     截图等共享文档资源
 
 ```sh
 npm ci
-npm run typecheck
+npm run typecheck  # TypeScript + Python (Pyright)
 npm test
 npm run build:alfred
 npm run build:vicinae
