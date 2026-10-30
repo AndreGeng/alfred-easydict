@@ -5,7 +5,7 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { execFileSync } from 'node:child_process';
-import { writeBuildInfo } from '../apps/raycast/scripts/build-info.mts';
+import { writeBuildInfo } from '../packages/core/scripts/build-info.mts';
 
 test('build metadata distinguishes tagged, dirty, and untagged builds and survives source packaging', () => {
   const dir = mkdtempSync(join(tmpdir(), 'felixdict-build-info-'));

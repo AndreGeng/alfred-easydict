@@ -5,3 +5,4 @@ dist/
 node_modules/
 __pycache__/
 apps/raycast/assets/build-info.json
+apps/vicinae/assets/build-info.json

@@ -3,6 +3,7 @@ import { Action, ActionPanel, Cache, Clipboard, Detail, List, Toast,
   closeMainWindow, getPreferenceValues, showToast, type LaunchProps } from '@vicinae/api';
 import { createSearchSession, prepareQuery, resultRows, pronunciationText } from './model.mts';
 import { speak } from './speech.mts';
+import { AboutAction } from './about';
 
 import type { QueryState as State } from '@easydict/core/types';
 type Row = { id: string; title: string; subtitle: string; copy?: string; speak?: string; fullText?: string; completion?: string };
@@ -36,6 +37,7 @@ function ResultActions({ row, complete, detail = false }: { row: Row; complete: 
         actions={<ResultActions row={row} complete={complete} detail />} />} />}
     {row.completion && !detail && <Action title="补全并查询 / Complete Word"
       shortcut={{ modifiers: ['cmd'], key: 'o' }} onAction={() => complete(row.completion!)} />}
+    <ActionPanel.Section><AboutAction /></ActionPanel.Section>
   </ActionPanel>;
 }
 
@@ -92,7 +94,7 @@ export default function Search(props: LaunchProps<{ arguments: { query?: string 
   }
   return <List onSelectionChange={setSelectedId} navigationTitle="FelixDict" searchText={query} onSearchTextChange={change}
     filtering={false} isLoading={!!state?.pending.length}
-    searchBarPlaceholder="单词 / prefix / :ja hello">
+    searchBarPlaceholder="单词 / prefix / :ja hello" actions={<ActionPanel><AboutAction /></ActionPanel>}>
     <List.EmptyView title={message} description={shortcutHint} />
     <List.Section title={shortcutHint}>
     {rows.map(row => {

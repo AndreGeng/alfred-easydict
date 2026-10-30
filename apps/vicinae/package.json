@@ -161,7 +161,8 @@
     "build": "vici build",
     "dev": "vici develop",
     "typecheck": "tsc --noEmit",
-    "prebuild": "node --experimental-strip-types scripts/prepare-assets.mts"
+    "prebuild": "node --experimental-strip-types scripts/prepare-assets.mts",
+    "predev": "node --experimental-strip-types scripts/prepare-assets.mts"
   },
   "dependencies": {
     "@vicinae/api": "0.29.2",

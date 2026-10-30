@@ -1,5 +1,5 @@
 import { copyFile, mkdir } from 'node:fs/promises';
-import { writeBuildInfo } from './build-info.mts';
+import { writeBuildInfo } from '../../../packages/core/scripts/build-info.mts';
 const root = new URL('../../../', import.meta.url);
 const legal = new URL('../assets/legal/', import.meta.url);
 await mkdir(legal, { recursive: true });

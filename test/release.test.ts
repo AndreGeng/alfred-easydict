@@ -10,7 +10,7 @@ const enabled = process.env.TEST_RELEASE === '1';
 test('release archives contain runnable entries, legal notices and independent source install', { skip: !enabled }, () => {
   const expected: Record<string, string[]> = {
     [`Alfred-FelixDict-${version}.alfredworkflow`]: ['info.plist', 'launch.sh'],
-    [`FelixDict-Vicinae-${version}.zip`]: ['easydict-companion/package.json', 'easydict-companion/search.js', 'easydict-companion/assets/legal/LICENSE', 'INSTALL.md'],
+    [`FelixDict-Vicinae-${version}.zip`]: ['easydict-companion/package.json', 'easydict-companion/search.js', 'easydict-companion/assets/legal/LICENSE', 'easydict-companion/assets/build-info.json', 'INSTALL.md'],
     [`FelixDict-Raycast-${version}.rayext`]: ['package.json', 'search.js', 'assets/legal/LICENSE', 'assets/build-info.json'],
     [`FelixDict-Raycast-source-${version}.zip`]: ['package.json', 'package-lock.json', 'apps/raycast/src/search.tsx', 'apps/raycast/assets/build-info.json', 'packages/core/src/core.ts', 'INSTALL.md'].map(x => `FelixDict-Raycast-source-${version}/${x}`),
   };

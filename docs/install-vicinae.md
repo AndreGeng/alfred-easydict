@@ -26,3 +26,9 @@ Updating: quit Vicinae, move the old `extensions/easydict-companion` folder outs
 
 运行依赖 Vicinae 的扩展运行环境和 `/usr/bin/curl`。Linux 朗读还需要配置 `spd-say`。回退时退出 Vicinae，并恢复备份的单个扩展目录。
 Requires Vicinae's extension runtime and `/usr/bin/curl`. Linux speech also needs configured `spd-say`. To roll back, quit Vicinae and restore the backed-up extension folder.
+
+## 查看版本 / Check version
+
+从 v0.2.1 起，在 FelixDict 的 Actions 菜单选择“关于 FelixDict / About FelixDict”，可查看版本号、Git 提交和 Release / Development 构建类型，也可以复制版本信息或打开 GitHub Releases。空查询和结果页面均可进入。
+
+Starting with v0.2.1, select “About FelixDict” in the Actions menu to see the version, Git commit and Release / Development build type. You can copy the version information or open GitHub Releases, both from an empty search and from results.
