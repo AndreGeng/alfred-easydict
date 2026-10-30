@@ -30,3 +30,15 @@ test('Vicinae keeps the module format required by its CommonJS build output', as
   assert.equal(manifest.type, 'commonjs');
   assert.equal(manifest.dependencies['@easydict/core'], '0.1.6');
 });
+
+test('both apps speak translated text for Google and Bing, with or without a target prefix', () => {
+  for (const query of [':ja 你好', '你好']) {
+    const state: QueryState = { updated: 0, pending: [], errors: {}, results: {
+      Google: 'こんにちは', Bing: 'こんにちは！'
+    } };
+    const expected = ['こんにちは', 'こんにちは！'];
+    assert.deepEqual(resultItems(query, state).map(item => item.speak), expected);
+    assert.deepEqual(render(query, state).items.map(item => item.mods?.cmd.arg), expected);
+    assert.deepEqual(resultRows(query, state).map(item => item.speak), expected);
+  }
+});

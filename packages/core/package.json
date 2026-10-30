@@ -23,6 +23,10 @@
     "./types": {
       "types": "./dist/types.d.ts",
       "default": "./dist/types.js"
+    },
+    "./speech": {
+      "types": "./dist/speech.d.ts",
+      "default": "./dist/speech.js"
     }
   }
 }

@@ -30,7 +30,7 @@ Enter `hello`, `trans`, `你好`, `:ja hello`, or a sentence. You can also suppl
 | Action | macOS | Linux | Behavior |
 | --- | --- | --- | --- |
 | Copy | Enter | Enter | Copy the selected meaning, or the complete suggested word; close the window |
-| Speak | ⌘Enter | Ctrl+Enter | Speak the original query, or the complete suggested word; keep the list open |
+| Speak | ⌘Enter | Ctrl+Enter | Speak the query word for dictionary results, translated text for translations, or the complete suggested word; keep the list open |
 | Full text | ⌘L | Ctrl+L | Open a scrollable detail page; Esc returns to the list |
 | Complete | ⌘O | Ctrl+O | Complete a selected suggestion and look it up |
 

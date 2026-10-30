@@ -18,7 +18,7 @@ export function resultItems(query: string, state: QueryState): ResultItem[] {
   }
   for (const name of ['Google', 'Bing'] as const) {
     const value = state.results[name];
-    if (value) items.push(row(query, value, `${name} 翻译`));
+    if (value) items.push({ ...row(query, value, `${name} 翻译`), speak: value });
   }
   const suggestions = (state.results.Suggest || []).map(({ word, explanation }) => ({
     ...row(word, word, explanation || '有道单词联想'), completion: word, fullText: `${word}\n${explanation}`

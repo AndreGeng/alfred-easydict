@@ -97,7 +97,7 @@ The following 11 target languages can be selected explicitly:
 
 Enable Google or Bing; Google is used by default. The translation service detects the source language. Short words, kanji-only text, and mixed languages can be ambiguous; use a prefix such as `:zh` or `:en` to fix the target.
 Explicit targets show translation results only. Youdao's definitions, phonetics, and prefix suggestions retain their existing English–Chinese scope.
-`⌘Enter` speaks the original text without the language prefix. Pronunciation depends on the language support of the current macOS voice.
+`⌘Enter` speaks the translation for translation results and the query word for dictionary results. Japanese containing kana, Korean, and Chinese use a matching installed system voice.
 
 ### Find a word from its prefix
 
@@ -114,7 +114,7 @@ Candidates also support copying, speech, and Large Type. Chinese text, sentences
 | --- | --- | --- |
 | `↑` / `↓` | Select a result | Select a candidate |
 | `Enter` | Copy the selected definition or translation | Copy the complete candidate word |
-| `⌘Enter` | Speak the original query; keep Alfred open | Speak the complete candidate; keep Alfred open |
+| `⌘Enter` | Speak the query word for dictionary results or translated text for translations; keep Alfred open | Speak the complete candidate; keep Alfred open |
 | `⌘L` | Show the full selected result in Large Type | Show the candidate and its supplied gloss in Large Type |
 | `Tab` | — | Complete the word and look it up |
 | `Esc` | Dismiss the query | Dismiss the query |

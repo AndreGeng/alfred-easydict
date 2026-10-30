@@ -1,16 +1,15 @@
 import { render } from './render.js';
 import { parseQuery, languagePreferences } from '@easydict/core/languages';
-import { spawn, execFile } from 'node:child_process';
+import { spawn } from 'node:child_process';
 import { mkdir, writeFile, readFile, unlink, readdir, stat } from 'node:fs/promises';
 import { homedir } from 'node:os';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { promisify } from 'node:util';
+import { speak } from '@easydict/core/speech';
 import { randomUUID } from 'node:crypto';
 import { providers, selectProviders } from '@easydict/core/providers';
 import { cacheKey, queryProviders, readState, saveState, failureMessage } from '@easydict/core/core';
 
-const run = promisify(execFile);
 const script = fileURLToPath(import.meta.url);
 const [mode, ...args] = process.argv.slice(2);
 const cacheDir = process.env.alfred_workflow_cache || join(homedir(), 'Library/Caches/local.alfred-easydict');
@@ -38,7 +37,7 @@ async function worker(query: string, path: string, id: string) {
 async function main() {
   if (mode === '--action') {
     const value = args.join(' ');
-    if (process.env.action === 'speak') await run('/usr/bin/say', ['--', value], { timeout: 60000 });
+    if (process.env.action === 'speak') await speak(value);
     else {
       await new Promise<void>((resolve, reject) => {
         const child = spawn('/usr/bin/pbcopy', [], { stdio: ['pipe', 'ignore', 'ignore'] });
