@@ -30,6 +30,18 @@ Alfred, Vicinae, and Raycast are keyboard-driven application launchers. FelixDic
 
 Launcher platform information checked on 2026-10-30: [Alfred](https://www.alfredapp.com/), [Vicinae platform overview](https://docs.vicinae.com/os-support) and [Windows installation guide](https://docs.vicinae.com/install/windows), and [Raycast for Windows](https://www.raycast.com/windows). Vicinae's overview has not yet updated its Windows status; this table follows the newer Windows installation guide.
 
+## Downloads and installation
+
+Choose **v0.2.0 or later** from [GitHub Releases](https://github.com/AndreGeng/FelixDict/releases) and download the asset for your launcher:
+
+| Launcher | Release asset | Installation |
+| --- | --- | --- |
+| Alfred | `Alfred-FelixDict-*.alfredworkflow` | Double-click to import; requires Powerpack and Node.js 18+ |
+| Vicinae | `FelixDict-Vicinae-*.zip` | Extract and copy the precompiled extension as described in INSTALL.md; no build needed |
+| Raycast | `FelixDict-Raycast-source-*.zip` | Extract, run `npm ci` then `npm run dev:raycast`; requires Node.js 22.22.2+ |
+
+An official precompiled `.rayext` bundle is also provided, but the tested Raycast installation route is the source ZIP; double-click import is not guaranteed. Download these named assets instead of GitHub's automatic Source code archives. Extensions are not yet listed in extension stores. Checksums are in `SHA256SUMS`.
+
 ## Alfred
 
 For **macOS with Alfred 5 Powerpack**. Requires Node.js 18+ at runtime.
@@ -122,9 +134,11 @@ npm test
 npm run build:alfred
 npm run build:vicinae
 npm run build:raycast
+npm run package:release
+npm run test:release
 ```
 
-- `build:alfred` compiles core and CLI, then produces `dist/Alfred-FelixDict-0.1.6.alfredworkflow`. It does not import or replace your installed workflow.
+- `build:alfred` compiles core and CLI, then produces `dist/Alfred-FelixDict-0.2.0.alfredworkflow`. It does not import or replace your installed workflow.
 - `build:vicinae` compiles core, then builds and installs the extension into your local Vicinae directory.
 - `build:raycast` compiles and validates the extension without importing it; `dev:raycast` builds and imports it into local Raycast.
 - `build` builds all three apps, including the local Vicinae installation.
@@ -136,3 +150,5 @@ Vicinae bundles shared code and does not depend on the checkout at runtime. Linu
 ## License and attribution
 
 MIT. See [THIRD_PARTY.md](THIRD_PARTY.md) for upstream protocol and source attribution.
+
+See [release workflow](docs/RELEASING.md).

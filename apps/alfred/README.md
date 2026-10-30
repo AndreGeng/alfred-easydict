@@ -23,6 +23,8 @@
 
 ## 安装
 
+推荐从 [Releases](https://github.com/AndreGeng/FelixDict/releases) 下载 v0.2.0+ 的 `Alfred-FelixDict-*.alfredworkflow`，双击导入即可，无需构建。以下也提供源码构建方式。
+
 需要 **macOS、Alfred 5 + Powerpack、Node.js 18+**。运行时没有 npm 依赖。
 
 1. 在项目目录构建安装包：
@@ -32,7 +34,7 @@
    npm run build:alfred
    ```
 
-2. 双击生成的 `dist/Alfred-FelixDict-0.1.6.alfredworkflow`，在 Alfred 中导入或更新。
+2. 双击生成的 `dist/Alfred-FelixDict-0.2.0.alfredworkflow`，在 Alfred 中导入或更新。
 3. 呼出 Alfred，输入 `fd hello`。默认关键词为 `fd`。
 4. 如果找不到 Node.js，在 **Workflows → FelixDict for Alfred → Configure Workflow** 中设置 `node_path`。
 

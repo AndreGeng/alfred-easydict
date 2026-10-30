@@ -1,0 +1,49 @@
+name: Release plugins
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  package:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.23.1'
+          cache: npm
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: npm ci
+      - name: Check tag matches package version
+        if: startsWith(github.ref, 'refs/tags/')
+        run: node --input-type=module -e 'import fs from "node:fs"; if (process.env.GITHUB_REF_NAME !== `v${JSON.parse(fs.readFileSync("package.json")).version}`) process.exit(1)'
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm run package:release
+      - run: npm run test:release
+      - uses: actions/upload-artifact@v4
+        with:
+          name: FelixDict-plugins
+          path: dist/release/*/*
+          if-no-files-found: error
+  release:
+    if: startsWith(github.ref, 'refs/tags/')
+    needs: package
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: FelixDict-plugins
+          path: artifacts
+      - name: Create draft release for review
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ github.ref_name }}
+        run: gh release create "$RELEASE_TAG" artifacts/* --verify-tag --draft --title "FelixDict $RELEASE_TAG" --notes-file docs/RELEASE.md

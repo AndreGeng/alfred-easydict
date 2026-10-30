@@ -19,6 +19,10 @@
 
 ## 安装
 
+可从 [Releases](https://github.com/AndreGeng/FelixDict/releases) 下载 v0.2.0+ 的 `FelixDict-Vicinae-*.zip` 预编译包，无需从源码构建。详细步骤见 [安装指南](../../docs/install-vicinae.md)。
+
+以下为仓库源码安装方式。
+
 需要 Vicinae 0.29.2 或更新版本、用于构建的 Node.js 22.22.2+ 与 npm，以及运行时的 `/usr/bin/curl`。
 从**完整仓库**构建，因为扩展会引用 `packages/core/` 的共享代码：
 

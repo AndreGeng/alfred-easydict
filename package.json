@@ -1,6 +1,6 @@
 {
   "name": "easydict-monorepo",
-  "version": "0.1.6",
+  "version": "0.2.0",
   "private": true,
   "type": "module",
   "description": "Shared TypeScript dictionary engine with Alfred, Vicinae and Raycast apps",
@@ -16,7 +16,9 @@
     "test": "npm run build:core && tsc -p apps/alfred && node --experimental-strip-types --test test/*.test.ts && python3 -m unittest discover -s test -p \"*_test.py\"",
     "typecheck:python": "pyright",
     "build:raycast": "npm run build:core && npm run build -w felixdict-raycast",
-    "dev:raycast": "npm run build:core && npm run dev -w felixdict-raycast"
+    "dev:raycast": "npm run build:core && npm run dev -w felixdict-raycast",
+    "package:release": "node --experimental-strip-types scripts/release.mts",
+    "test:release": "TEST_RELEASE=1 node --experimental-strip-types --test test/release.test.ts"
   },
   "license": "MIT",
   "workspaces": [

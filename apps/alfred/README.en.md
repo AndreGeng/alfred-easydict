@@ -23,6 +23,8 @@ A standalone Alfred Workflow with an English–Chinese dictionary and multilingu
 
 ## Installation
 
+Download `Alfred-FelixDict-*.alfredworkflow` from [Releases](https://github.com/AndreGeng/FelixDict/releases), v0.2.0 or later, and double-click to import; no build needed. Source build instructions are also provided below.
+
 Requires **macOS, Alfred 5 with Powerpack, and Node.js 18+**. There are no npm runtime dependencies.
 
 1. Build the package from the project directory:
@@ -32,7 +34,7 @@ Requires **macOS, Alfred 5 with Powerpack, and Node.js 18+**. There are no npm r
    npm run build:alfred
    ```
 
-2. Double-click `dist/Alfred-FelixDict-0.1.6.alfredworkflow` to import or update it in Alfred.
+2. Double-click `dist/Alfred-FelixDict-0.2.0.alfredworkflow` to import or update it in Alfred.
 3. Open Alfred and enter `fd hello`. The default keyword is `fd`.
 4. If Node.js cannot be found, set `node_path` under **Workflows → FelixDict for Alfred → Configure Workflow**.
 

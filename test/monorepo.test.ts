@@ -28,7 +28,7 @@ test('both app adapters preserve the shared result order and action data', () =>
 test('Vicinae keeps the module format required by its CommonJS build output', async () => {
   const manifest = JSON.parse(await readFile(new URL('../apps/vicinae/package.json', import.meta.url), 'utf8'));
   assert.equal(manifest.type, 'commonjs');
-  assert.equal(manifest.dependencies['@easydict/core'], '0.1.6');
+  assert.equal(manifest.dependencies['@easydict/core'], '0.2.0');
 });
 
 test('both apps speak translated text for Google and Bing, with or without a target prefix', () => {

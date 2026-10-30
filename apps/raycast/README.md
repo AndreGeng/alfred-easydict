@@ -6,6 +6,10 @@
 
 ## 安装
 
+可从 [Releases](https://github.com/AndreGeng/FelixDict/releases) 下载 v0.2.0+ 的 `FelixDict-Raycast-source-*.zip`，无需克隆完整仓库。详细步骤见 [安装指南](../../docs/install-raycast.md)。
+
+以下为仓库源码安装方式。
+
 FelixDict 的 Raycast 扩展目前仅支持 macOS。Raycast 本身也有 Windows 版本，但本扩展尚未适配 Windows。需要 Raycast；从源码构建需要 Node.js 22.22.2+、npm，以及完整仓库。
 
 在仓库根目录执行：

@@ -19,6 +19,10 @@ Actual macOS screenshots showing dictionary results, phonetics, and prefix sugge
 
 ## Install
 
+Download the precompiled `FelixDict-Vicinae-*.zip` from [Releases](https://github.com/AndreGeng/FelixDict/releases), v0.2.0 or later. No source build is needed; follow the [installation guide](../../docs/install-vicinae.md).
+
+The following steps install from a repository checkout.
+
 Requires Vicinae 0.29.2+, Node.js 22.22.2+ and npm for building, and `/usr/bin/curl` at runtime.
 Build from the **complete repository** because the extension imports shared code from `packages/core/`:
 

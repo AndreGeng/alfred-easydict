@@ -1,9 +1,9 @@
 {
   "name": "@easydict/alfred",
-  "version": "0.1.6",
+  "version": "0.2.0",
   "private": true,
   "type": "module",
   "dependencies": {
-    "@easydict/core": "0.1.6"
+    "@easydict/core": "0.2.0"
   }
 }

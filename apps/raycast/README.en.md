@@ -6,6 +6,10 @@ Dictionary definitions, phonetics, spelling suggestions, and translation in Rayc
 
 ## Installation
 
+Download `FelixDict-Raycast-source-*.zip`; no repository clone is needed. Use v0.2.0+ from [Releases](https://github.com/AndreGeng/FelixDict/releases). See the [installation guide](../../docs/install-raycast.md).
+
+The following steps install from a repository checkout.
+
 The FelixDict Raycast extension currently supports macOS only. Raycast itself also supports Windows, but this extension has not yet been adapted for Windows. Requires Raycast; source builds require Node.js 22.22.2+, npm, and the complete repository.
 
 Run from the repository root:

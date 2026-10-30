@@ -30,6 +30,18 @@ Alfred、Vicinae 和 Raycast 都是用键盘呼出的应用启动器；FelixDict
 
 启动器平台信息核对于 2026-10-30：[Alfred 官网](https://www.alfredapp.com/)、[Vicinae 平台说明](https://docs.vicinae.com/os-support)及 [Windows 安装说明](https://docs.vicinae.com/install/windows)、[Raycast Windows](https://www.raycast.com/windows)。Vicinae 的平台概览尚未更新 Windows 状态，此处以较新的 Windows 安装说明为准。
 
+## 下载与安装
+
+从 [GitHub Releases](https://github.com/AndreGeng/FelixDict/releases) 选择 **v0.2.0 或更新版本**，按启动器下载：
+
+| 启动器 | Release 附件 | 安装方式 |
+| --- | --- | --- |
+| Alfred | `Alfred-FelixDict-*.alfredworkflow` | 双击导入，需要 Powerpack 和 Node.js 18+ |
+| Vicinae | `FelixDict-Vicinae-*.zip` | 解压，按包内 INSTALL.md 复制预编译扩展目录，无需编译 |
+| Raycast | `FelixDict-Raycast-source-*.zip` | 解压后执行 `npm ci`、`npm run dev:raycast`，需要 Node.js 22.22.2+ |
+
+Raycast 另提供官方 `.rayext` 预编译包，但当前已验证的安装路径为源码 ZIP，不能保证双击导入。请下载上述附件，而不是 GitHub 自动生成的 Source code 归档。各版本暂未上架扩展商店。附件校验值见 `SHA256SUMS`。
+
 ## Alfred
 
 适用于 **macOS + Alfred 5 Powerpack**，运行需要 Node.js 18+。
@@ -124,9 +136,11 @@ npm test
 npm run build:alfred
 npm run build:vicinae
 npm run build:raycast
+npm run package:release
+npm run test:release
 ```
 
-- `npm run build:alfred`：先编译共享包和 Alfred CLI，再生成 `dist/Alfred-FelixDict-0.1.6.alfredworkflow`。不会导入或覆盖已安装的 Alfred Workflow。
+- `npm run build:alfred`：先编译共享包和 Alfred CLI，再生成 `dist/Alfred-FelixDict-0.2.0.alfredworkflow`。不会导入或覆盖已安装的 Alfred Workflow。
 - `npm run build:vicinae`：先编译共享包，再构建并安装到当前用户的 Vicinae 扩展目录。
 - `npm run build:raycast`：编译并验证 Raycast 扩展，不导入本机；`npm run dev:raycast` 构建并导入本机 Raycast。
 - `npm run build`：依次构建三个应用；其中 Vicinae 构建会执行本地安装。
@@ -138,3 +152,5 @@ Vicinae 将共享代码打包进扩展，运行时不依赖仓库路径。Linux/
 ## 许可与来源
 
 MIT。上游协议和代码来源见 [THIRD_PARTY.md](THIRD_PARTY.md)。
+
+发布流程见 [发布说明](docs/RELEASING.md)。
