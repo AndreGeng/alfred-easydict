@@ -105,22 +105,26 @@ export async function suggest(query, signal) {
   return decodeSuggestions(JSON.parse(response.body), query);
 }
 
-export function selectProviders(names, query) {
+export function selectProviders(names, query, preferences) {
   const parsed = parseQuery(query);
   const supportedDictionary = !parsed.target && Array.from(query).every(char => !/\p{L}/u.test(char) || /[\p{Script=Han}\p{Script=Latin}]/u.test(char));
-  const selected = Object.fromEntries([...new Set(names)].filter(name => name !== 'Youdao' || supportedDictionary).map(name => [name, providers[name]]));
+  const selected = Object.fromEntries([...new Set(names)]
+    .filter(name => name !== 'Youdao' || supportedDictionary)
+    .map(name => [name, preferences
+      ? (text, signal) => providers[name](text, signal, preferences)
+      : providers[name]]));
   if (supportedDictionary && names.includes('Youdao') && canSuggest(query)) selected.Suggest = suggest;
   return selected;
 }
 
-export async function bing(query, signal) {
+export async function bing(query, signal, preferences) {
   const page = await request('https://www.bing.com/translator', { signal });
   const origin = new URL(page.url);
   if (origin.protocol !== 'https:' || !['www.bing.com', 'cn.bing.com'].includes(origin.hostname)) {
     throw new Error('Unexpected Bing redirect');
   }
   const config = parseBingConfig(page.body);
-  const input = direction(query);
+  const input = direction(query, preferences);
   const params = new URLSearchParams({ isVertical: '1', IG: config.ig, IID: `${config.iid}.1` });
   const translate = async target => {
     const body = new URLSearchParams({ text: input.text, fromLang: input.from, to: target,
@@ -130,7 +134,7 @@ export async function bing(query, signal) {
     return { value: decodeBing(data), detected: text(data[0]?.detectedLanguage?.language) };
   };
   const first = await translate(input.to);
-  const target = first.detected ? resolvedTarget(query, first.detected) : input.to;
+  const target = first.detected ? resolvedTarget(query, first.detected, preferences) : input.to;
   return target === input.to ? first.value : (await translate(target)).value;
 }
 
@@ -142,8 +146,8 @@ export function decodeGoogle(data) {
 }
 
 // Independently implemented HTTP adapter; upstream currently uses a separate npm library.
-export async function google(query, signal) {
-  const input = direction(query);
+export async function google(query, signal, preferences) {
+  const input = direction(query, preferences);
   const translate = async target => {
     const params = new URLSearchParams({ client: 'dict-chrome-ex', sl: 'auto',
       tl: target === 'zh-Hans' ? 'zh-CN' : target, dt: 't', q: input.text });
@@ -152,7 +156,7 @@ export async function google(query, signal) {
     return { value: decodeGoogle(data), detected: text(data[2]) };
   };
   const first = await translate(input.to);
-  const target = first.detected ? resolvedTarget(query, first.detected) : input.to;
+  const target = first.detected ? resolvedTarget(query, first.detected, preferences) : input.to;
   return target === input.to ? first.value : (await translate(target)).value;
 }
 

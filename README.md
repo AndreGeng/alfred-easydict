@@ -1,5 +1,8 @@
 # Easydict for Alfred
 
+
+> **Vicinae 版本**：同仓库现已提供 [Easydict](vicinae/README.md)，共用查词和拼写建议逻辑，单独构建安装。下文为 Alfred 版说明。
+
 **中文** · [English](README.en.md)
 
 在 Alfred 里查词、联想单词、翻译多种语言。支持中英词典，以及日语、韩语、法语等语言的自动翻译。

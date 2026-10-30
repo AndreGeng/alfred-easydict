@@ -1,5 +1,8 @@
 # Easydict for Alfred
 
+
+> **Vicinae version**: this repository also includes [Easydict](vicinae/README.en.md), sharing dictionary and prefix suggestions with a separate build and installation. The instructions below cover Alfred.
+
 [中文](README.md) · **English**
 
 Look up words, complete partial spellings, and translate across languages inside Alfred. Includes an English–Chinese dictionary and automatic translation for Japanese, Korean, French, and more.
